@@ -122,3 +122,52 @@ add1(1,2);
 //getName("1",undefined,"z")
 //let getName: (x: string,y?: string,z: string) => string = function (x, y, z) { return x+y+z;}
 
+// 不定参数例子
+function func1(x: number,y: number,... args: number[]) {
+    console.log(x,y,args);
+}
+func1(1,2,4,5,7);
+
+// 函数重载
+// 同名不同参
+// 函数重载声明，可以使用重载定义多个函数类型
+function newAdd(x: number,y: number): number
+function newAdd(x: string,y: string): string
+// 函数的实现
+function newAdd(x: number | string,y: number | string): (number | string) {
+    if ((typeof x == "number") && (typeof y == "number")){
+        return x + y;
+    }else if ((typeof x == "string") && (typeof y == "string")){
+        return (x + y).toString()
+    }
+}
+console.log(newAdd("zhang","3"))
+console.log(newAdd(1,2))
+
+// 类型断言： 手动指定类型
+// 2中方式
+// 1. 变量 as 类型
+// 2. <类型>变量
+
+function GetLength(x: string | number): number {
+    if ((x as string).length){ // 第一种
+        return (<string>x).length; // 第二种
+    }else{
+        return x.toString().length;
+    }
+}
+
+// 将任何一个类型断言为any，any类型是可以访问任何属性和方法的
+//window.a = 10; // ❌
+(window as any).a = 10; // ☑️
+// 不推荐使用any,他会掩盖类型的错误
+
+// 将any断言为一个具体的类型
+function asd(x: any,y: any): any {
+    return x + y;
+}
+let a = asd(1,2) as number // any => number
+
+
+
+
