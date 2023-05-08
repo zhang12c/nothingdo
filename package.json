@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "dependencies": {
-        "fairygui-layabox": "file:../source"
+        "fairygui-layabox": "file:../source",
+        "layaair2-cmd": "^1.6.9"
     }
 }

@@ -1,5 +1,6 @@
 import GameConfig from "./GameConfig";
 import DemoEntry from "./demo/DemoEntry";
+import {MyLearnRoom} from "./script/LearnTypeScript/MyLearnRoom";
 
 class Main {
 	constructor() {
@@ -38,6 +39,7 @@ class Main {
 		Laya.stage.addChild(fgui.GRoot.inst.displayObject);
 
 		new DemoEntry();
+		new MyLearnRoom();
 	}
 
 }
