@@ -188,6 +188,8 @@ Tarr.push("124");
 Tarr.push(124);
 
 // 枚举类型给一组数值赋予名称
+// 枚举有2种类型： 常数项和计算所得项
+// 常数项：
 enum NumberType {
     one , // 如果手动赋值 one = 1 ,则后续two 默认= 2，根据前面值自动递加的
     two, // 如果 one = 2, two = 1,three 就会覆盖one ⚠️
@@ -196,3 +198,141 @@ enum NumberType {
 }
 // 可以通过key 拿到value ，也可value 拿到 key
 //for 遍历一下就知道了
+
+// 计算所得：
+enum AOI{
+    teed,
+    fees = "Feed".length,
+    sevb = 6 // 这里必须赋值，因为无法预计算fees的值，也就无法确定自己的值
+}
+
+// 常数枚举
+const enum ONO{
+    o,
+    b,
+    j,
+}
+console.log(ONO.o)// 在编译之后，直接就是 ONO.o 会被删调，直接就是 0值替换了。不知道有啥用
+
+// 外部枚举
+declare enum OutEEm{
+    a,b,c
+}
+console.log(OutEEm.a) // 和常数枚举一样，只保留值。
+
+// 类 实现继承用
+// 定义一个事物的抽象特点，包含成员和方法
+class Person{
+    name: string;
+    age: number;
+    constructor(name: string,age: number) { // 参数的属性也要写，否则就是any了，也不报错⚠️，容易出问题
+        this.name = name;
+        this.age = age;
+    }
+    public SayHi(): void{
+        console.log("HI")
+    }
+}
+let p = new Person("li",13); // new 的时候，会执行类中构造方法
+p.SayHi();
+
+// 继承
+class Animal{
+    name: string;
+    age: number;
+    constructor(name: string,age?: number) {
+        this.name = name;
+        this.age = age | 10;
+    }
+}
+class Dog extends Animal{
+    constructor(name) {
+        super(name);
+    }
+}
+
+// 存取器，控制对对象成员的访问
+class Name{
+    firstName: string;
+    lastName: string;
+    constructor(a: string, b: string) {
+        this.firstName = a;
+        this.lastName = b;
+    }
+    // 设置存取器
+    get FullName(){
+        return this.firstName + " " + this.lastName;
+    }
+    set FullName(value){
+        let inputStr = value.split(" ");
+        this.firstName = inputStr[0];
+        this.lastName = inputStr[1];
+    }
+}
+
+// 静态方法 和 静态成员 语法与C#相同
+
+// public private protected 修饰符 语法与C#相同
+
+// readonly修饰符
+
+class  SD{
+    //readonly  age: number ;
+    // constructor(age: number) {
+    //     this.age = age; // 在构造函数中可以赋值
+    // }
+    constructor(readonly age: number) { // 如果在age 这里加修饰符，那就不用在之前声明了
+
+    }
+    SyaAge(){
+        //this.age = 10; // 会报错啦！
+    }
+}
+
+// 抽象类 类似 C#
+abstract class Y{
+    name: string;
+    protected constructor(name: string) {
+        this.name = name;
+    }
+    abstract SayHi()// 只有名称，没有实体
+}
+//let Y = new Y("s"); // 不能被实例化
+class  X extends Y{
+    constructor(name: string) {
+        super(name);
+    }
+    SayHi() { // 只能在子类里实例化
+        console.log("Hi")
+    }
+}
+
+const seg = new X("zhang");
+seg.SayHi();
+
+// 类的类型 赋值可以是： 类名来规范类
+let sdv: X = new X("dve")
+
+// 类和接口 联动
+// 不同的对象有相同的行为
+interface ICanSing{
+    Sing(); // 方法 唱
+}
+interface ICanDance{
+    Dance();
+}
+class P implements ICanSing,ICanDance { // person
+    Dance() {
+        console.log("Dance")
+    }
+
+    Sing() {
+        console.log("Sing")
+    }
+
+}
+class An implements ICanSing{
+    Sing() {
+        console.log("Animal Can Sing")
+    } // Animal
+}
