@@ -168,6 +168,31 @@ function asd(x: any,y: any): any {
 }
 let a = asd(1,2) as number // any => number
 
+// 类型别名
+type s = string // 类型起别名？好无语的用处
+let str: s = "ss";
+// 主要是用在联合类型。重复率很高的时候就可以利用
+type all = string | number | boolean
+let c: all = 123;
+let d: all = true;
 
+// 字符串字面量类型，用来约束。只能是某个字符串中的一个
+type stringType = "a" | "b" | "c"
+let names: stringType = "a"; // 这时候只能是3选1
 
+// 元组 合并了不同类型的对象
+// 数组里存2中类型的元素
+let Tarr: [number,string] = [123,"a"];
+// 添加内容，只可以是number 或 string
+Tarr.push("124");
+Tarr.push(124);
 
+// 枚举类型给一组数值赋予名称
+enum NumberType {
+    one , // 如果手动赋值 one = 1 ,则后续two 默认= 2，根据前面值自动递加的
+    two, // 如果 one = 2, two = 1,three 就会覆盖one ⚠️
+    three,
+    four,
+}
+// 可以通过key 拿到value ，也可value 拿到 key
+//for 遍历一下就知道了
