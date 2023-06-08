@@ -1,6 +1,16 @@
 import GameConfig from "./GameConfig";
 import DemoEntry from "./demo/DemoEntry";
-import {MyLearnRoom} from "./script/LearnTypeScript/MyLearnRoom";
+
+//import {MyLearnRoom} from "./script/LearnTypeScript/MyLearnRoom";
+declare global{
+	//是否忽略更新，PC版自己去掉注释，默认为false，不要提交
+	const __IGNORE_UPDATE__ = true;
+	//每个人定义一个自己的类型，用于屏蔽其他人写的打印log，为0时打印所有
+	const __PRINT_TYPE__ = 76;
+	//是否读取ab包资源文件
+	const __USE_FGUI_AB__ = false;
+	const __DEBUG__ = true;
+}
 
 class Main {
 	constructor() {
@@ -23,6 +33,7 @@ class Main {
 		if (GameConfig.stat) Laya.Stat.show();
 		//Laya.alertGlobalError = true;
 
+
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程
 		Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
 	}
@@ -39,7 +50,7 @@ class Main {
 		Laya.stage.addChild(fgui.GRoot.inst.displayObject);
 
 		new DemoEntry();
-		new MyLearnRoom();
+		//new MyLearnRoom();
 	}
 
 }
