@@ -1,5 +1,6 @@
 import GameConfig from "./GameConfig";
 import DemoEntry from "./demo/DemoEntry";
+import {Debug} from "./script/Base/Debug";
 
 //import {MyLearnRoom} from "./script/LearnTypeScript/MyLearnRoom";
 declare global{
@@ -32,7 +33,9 @@ class Main {
 		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
 		if (GameConfig.stat) Laya.Stat.show();
 		//Laya.alertGlobalError = true;
-
+		Debug.instance.Init();
+		console.log(76,"nihao")
+		console.log(75,"nihao")
 
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程
 		Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);

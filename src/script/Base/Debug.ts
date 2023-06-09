@@ -27,11 +27,19 @@ export class Debug {
     }
 
     private InitConsole() {
-        console.log = (function (func,type) {
-            return function (func,type) {
+        console.log = (function (func) {
+            return function (func) {
                 if (this.__LOG_LEVEL__ > Log_Level.Info) return;
+                if (arguments.length > 0) return;
+                if (__PRINT_TYPE__ > 0){
+                    if (__PRINT_TYPE__ != arguments[0]){
+                        return;
+                    }
+                }
+
+                func(...arguments)
 
             }.bind(this)
-        }.bind(this))(console.log,__PRINT_TYPE__)
+        }.bind(this))(console.log)
     }
 }
